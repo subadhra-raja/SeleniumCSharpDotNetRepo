@@ -59,5 +59,10 @@ namespace SeleniumProject1.Test_Utilities
             driver.Navigate().GoToUrl(Url);
             return new HomePage(driver);
         }
+        public MessageDemoPage NavigateToDemoSite(String Url)
+        {
+            driver.Navigate().GoToUrl(Url);
+            return new MessageDemoPage(driver);
+        }
     }    
 }
