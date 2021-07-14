@@ -3,7 +3,6 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using SeleniumProject1.Test_Utilities.Reporting;
-using SeleniumProject1.WebPages.ExampleTestPages;
 using SeleniumProject1.WebPages.TestPages;
 using System;
 using System.Collections.Generic;
@@ -49,16 +48,7 @@ namespace SeleniumProject1.Test_Utilities
                 }
             }
         }
-        public GooglePage NavigateToGooglePage(String Url)
-        {
-            driver.Navigate().GoToUrl(Url);
-            return new GooglePage(driver);
-        }
-        public HomePage NavigateToSite(String Url)
-        {
-            driver.Navigate().GoToUrl(Url);
-            return new HomePage(driver);
-        }
+       
         public MessageDemoPage NavigateToDemoSite(String Url)
         {
             driver.Navigate().GoToUrl(Url);

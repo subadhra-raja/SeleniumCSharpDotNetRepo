@@ -23,8 +23,8 @@ namespace SeleniumProject1.Steps.UI_Steps
             try
             {
                 ReportHandler.getinstance();
-                test = ReportHandler.extent.CreateTest("GoogleSearch").Info("Test Started");
-                test.Log(Status.Info, " Chrome Browser Launched");
+                test = ReportHandler.extent.CreateTest("ShowMessageTest").Info("Test Started");
+                test.Log(Status.Info, "Chrome Browser Launched");
                 GivenTheUserNavigatesToDemoSite();
                 GivenTheUserEntersAMessageInTheInputBox();
                 WhenTheUserClicksOnTheShowMessageButton();
@@ -52,26 +52,20 @@ namespace SeleniumProject1.Steps.UI_Steps
             MessageDemoPage.ExitPopup();
             UserMessage = "QA assessment trial #1";
             MessageDemoPage.EnterMessage(UserMessage);
+            test.Log(Status.Info, "Message entered.");
+
         }
         public void WhenTheUserClicksOnTheShowMessageButton()
         {
             MessageDemoPage.ClickShowMessageBtn();
+            test.Log(Status.Info, "Message Button Clicked.");
 
         }
         public void ThenTheUserEnteredTextIsDisplayed()
         {
             Assert.AreEqual(MessageDemoPage.MessageText(), UserMessage, "The User Message doesn't match");
+            test.Log(Status.Pass, "Test completed successfully");
         }
-
-
-
-
-
-
-
-
-
-
 
     }
 }

@@ -13,23 +13,23 @@ namespace SeleniumProject1.Steps.UI_Steps
 
         MessageDemoPage MessageDemoPage;
 
-        String UserMessage;
-        ExtentTest test = null;
         [Test]
         [Category("Smoke Test")]
         [Author("Subadhra Raja")]
-        public void ShowMessageTest()
+        public void CheckBoxTest()
         {
             try
             {
                 ReportHandler.getinstance();
-                test = ReportHandler.extent.CreateTest("GoogleSearch").Info("Test Started");
-                test.Log(Status.Info, " Chrome Browser Launched");
-                GivenTheUserNavigatesToDemoSite();
-                WhenTheUserClicksInPutForms();
-                WhenTheUserClicksCheckBoxDemo();
-                //ThenThebulletsareDisplayed();
-
+                ReportHandler.extent.CreateTest("CheckBoxTest").Info("Test Started");
+                NavigatesToDemoSite();
+                ClicksInPutFormsLink();
+                ClicksCheckBoxDemoLink();
+                ClickCheckAllButton();
+                VerifyAllCheckBoxesAreSelected();
+                VerifyButtonNameChangesToUnCheckALL();
+                UnCheckOneCheckbox();
+                VerifyButtonNameChangesBackToCheckALL();
             }
             catch (Exception e)
             {
@@ -42,39 +42,45 @@ namespace SeleniumProject1.Steps.UI_Steps
             }
         }
 
-        public void GivenTheUserNavigatesToDemoSite()
+        public void NavigatesToDemoSite()
         {
             MessageDemoPage = NavigateToDemoSite("https://www.seleniumeasy.com/test/basic-first-form-demo.html");
             
         }
-        public void WhenTheUserClicksInPutForms()
+        public void ClicksInPutFormsLink()
         {
             MessageDemoPage.ExitPopup();
-
-            MessageDemoPage.ClickInputForm();
+            MessageDemoPage.ClickInputFormLink();
         }
-        public void WhenTheUserClicksCheckBoxDemo()
+        public void ClicksCheckBoxDemoLink()
         {
             MessageDemoPage.ClickCheckBoxDemoLink();
-
         }
 
-        public void WhenTheUserClcikMultipleCheckBoxDemo()
+        public void ClickCheckAllButton()
         {
-            MessageDemoPage.ClickCheckBoxDemoLink();
+            MessageDemoPage.ClickCheckAllBtn();
 
         }
-       
+        public void VerifyAllCheckBoxesAreSelected()
+        {
+            Assert.IsTrue(MessageDemoPage.VerifyAllCheckBoxesChecked(), "All Checkboxes are not selected");
+        }
 
+        public void VerifyButtonNameChangesToUnCheckALL()
+        {
+            Assert.IsTrue(MessageDemoPage.BtnNameChanged(), "The Button namke is not changed");
+        }
 
+        public void UnCheckOneCheckbox()
+        {
+            MessageDemoPage.UnCheckACheckBox();
 
-
-
-
-
-
-
-
+        }
+        public void VerifyButtonNameChangesBackToCheckALL()
+        {
+            Assert.IsFalse(MessageDemoPage.BtnNameChanged(), "The Button name is not changed back to CheckALL");
+        }
 
     }
 }
