@@ -1,28 +1,30 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using AventStack.ExtentReports;
+using NUnit.Framework;
 using SeleniumProject1.Test_Utilities;
+using SeleniumProject1.Test_Utilities.Reporting;
 using SeleniumProject1.WebPages.ExampleTestPages;
-using SeleniumProject1.WebPages.TestPages;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace SeleniumProject1.Tests
+namespace SeleniumProject1.Steps.UI_Steps
 {
     [TestFixture]
-    public class ExampleTest : TestBase
+    public class ExampleTestSteps : TestBase
     {
 
         HomePage HomePage;
         DemoHomePage DemoHomePage;
         DragAndDropPage DragAndDropPage;
+        ExtentTest test = null;
         [Test]
         [Category("Smoke")]
         [Author("Subadhra Raja")]
-        public void TestExamples()
+        public void DragAndDropTest()
         {
             try
             {
+                ReportHandler.getinstance();
+                test = ReportHandler.extent.CreateTest("GoogleSearch").Info("Test Started");
+                test.Log(Status.Info, " Chrome Browser Launched");
                 GivenTheUserNavigatesToDragAndDropInDemoSite();
                 WhenTheUserDropsAllElement();
                 ThenDroppedElemtsAreDisplayedInTheList();
@@ -33,22 +35,30 @@ namespace SeleniumProject1.Tests
                 Console.WriteLine(e.StackTrace);
                 throw e;
             }
+            finally
+            {
+                ReportHandler.CloseReportInstance();
+            }
         }
 
         public void GivenTheUserNavigatesToDragAndDropInDemoSite()
         {
             HomePage = NavigateToSite("https://www.seleniumeasy.com/");
+            test.Log(Status.Info, "Url opened");
         }
         public void WhenTheUserDropsAllElement()
         {
             DemoHomePage =HomePage.ClickDemoButton();
             DragAndDropPage=DemoHomePage.NavigateToDragAndDropPage();
             DragAndDropPage.DropAllElements();
+            test.Log(Status.Info, "Elements are Dropped..");
+
         }
         public void ThenDroppedElemtsAreDisplayedInTheList()
         {
             bool ElementsDropped = DragAndDropPage.VerifyAllElementsDropped();
             Assert.IsTrue(ElementsDropped, "Elements are not dropped properly");
+            test.Log(Status.Pass, "Test Passed");
         }
 
 

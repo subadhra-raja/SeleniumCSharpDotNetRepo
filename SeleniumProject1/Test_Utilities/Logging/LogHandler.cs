@@ -4,7 +4,8 @@ using System.Text;
 
 namespace SeleniumProject1.Test_Utilities.Log
 {
-    class LogHandler
+    public class LogHandler
     {
+
     }
 }

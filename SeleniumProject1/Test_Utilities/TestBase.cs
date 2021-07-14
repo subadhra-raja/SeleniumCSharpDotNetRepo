@@ -1,6 +1,8 @@
-﻿using NUnit.Framework;
+﻿using AventStack.ExtentReports;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using SeleniumProject1.Test_Utilities.Reporting;
 using SeleniumProject1.WebPages.ExampleTestPages;
 using SeleniumProject1.WebPages.TestPages;
 using System;
@@ -12,12 +14,11 @@ namespace SeleniumProject1.Test_Utilities
     public class TestBase
     {
         public static IWebDriver driver;
-
         [SetUp]
         public void SetUp()
         {
             driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
+            driver.Manage().Window.Maximize();            
         }
         [TearDown]
         public void TearDown()
@@ -40,7 +41,7 @@ namespace SeleniumProject1.Test_Utilities
             {
                 try
                 {
-                    driver.Quit();
+                    driver.Quit();                    
                 }
                 catch (Exception e)
                 {

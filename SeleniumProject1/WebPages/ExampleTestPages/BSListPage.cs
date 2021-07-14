@@ -19,7 +19,6 @@ namespace SeleniumProject1.WebPages.ExampleTestPages
         {
             this.Driver = driver;
             page = new BasePage(Driver);
-
         }
         #region
         public By SourceElement = By.XPath("//span[@draggable='true']");

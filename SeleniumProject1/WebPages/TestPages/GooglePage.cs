@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumProject1.Test_Utilities;
 using SeleniumProject1.WebPages.Common;
 using System;
@@ -10,17 +11,19 @@ namespace SeleniumProject1.WebPages.TestPages
     
     public class GooglePage : TestBase
     {
-        IWebDriver Driver; 
+        IWebDriver Driver;
+        BasePage page;
        /// <summary>
-        /// Default Constructor
-        /// </summary>
+       /// Default Constructor
+       /// </summary>
         public GooglePage( IWebDriver driver)
         {
            this.Driver = driver;
+            page = new BasePage(Driver);
         }
         #region
         public By SearchBox = By.XPath("//input[@title='Search']");
-        public By SearchButton = By.XPath("//input[@type='submit']");
+        public By SearchButton = By.XPath("(//input[@type='submit' and @class='gNO89b'])[1]");
         #endregion
 
         ///<summary>
@@ -29,11 +32,11 @@ namespace SeleniumProject1.WebPages.TestPages
         ///<param name="text"></param>
         public SearchListPage SearchText(string text)
         {
-            BasePage page = new BasePage(Driver);
             page.TypeText(SearchBox, text);
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(SearchBox));
             page.Click(SearchButton);
             return new SearchListPage(driver);
         }
-
     }
 }

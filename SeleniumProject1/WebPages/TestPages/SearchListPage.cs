@@ -10,12 +10,14 @@ namespace SeleniumProject1.WebPages.TestPages
     public class SearchListPage :TestBase
     {
         IWebDriver Driver;
+        BasePage page;
         /// <summary>
         /// Default Constructor
         /// </summary>
         public SearchListPage(IWebDriver driver)
         {
             this.Driver = driver;
+            page = new BasePage(Driver);
         }
         #region
         public By GoogleLogo = By.Id("logo");
@@ -28,7 +30,6 @@ namespace SeleniumProject1.WebPages.TestPages
         ///<param name="text"></param>
         public bool CheckIfLogoAvailable()
         {
-            BasePage page = new BasePage(Driver);
             return page.IsElementDisplayed(GoogleLogo);
         }
 

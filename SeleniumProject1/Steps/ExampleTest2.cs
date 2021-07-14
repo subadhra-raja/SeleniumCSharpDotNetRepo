@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SeleniumProject1.Tests
+namespace SeleniumProject1.Steps
 {
     [TestFixture]
     public class ExampleTest2 : TestBase
