@@ -40,10 +40,10 @@ namespace SeleniumProject1.WebPages.ExampleTestPages
         public void ExitPopup()
         {
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-            IWebElement containerModel = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(AdvPopup));
-            IWebElement modelContent = containerModel.FindElement(AdvExitBtn);
+            IWebElement Modalcontainer = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(AdvPopup));
+            IWebElement modalContent = Modalcontainer.FindElement(AdvExitBtn);
             Thread.Sleep(3000);
-            modelContent.Click();
+            modalContent.Click();
              
         }
 
