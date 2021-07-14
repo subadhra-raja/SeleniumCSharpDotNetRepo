@@ -8,7 +8,7 @@ using System;
 namespace SeleniumProject1.Steps.UI_Steps
 {
     [TestFixture]
-    public class Test1Steps : TestBase
+    public class Test1 : TestBase
     {
 
         MessageDemoPage MessageDemoPage;
